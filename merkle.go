@@ -25,6 +25,11 @@ type Transaction struct {
 	amount   uint64
 }
 
+type Bloc struct {
+	hash         []byte
+	transactions []Transaction
+}
+
 func getString(b []byte) string {
 	return string(b)
 }
@@ -77,6 +82,12 @@ func newTransaction(_sender *User, _receiver *User, _amount uint64) (*Transactio
 	}
 }
 
+func newBloc(_transactions []Transaction) Bloc {
+	// Faire merkel puis rajouter le hash
+	bloc := Bloc{hash: hash, transactions: _transactions}
+	return bloc
+}
+
 func merkleTree(transactions []Transaction) {
 	if len(transactions)%2 == 0 && (len(transactions)/2)%2 == 0 {
 
@@ -91,15 +102,18 @@ func main() {
 	usr2 := newUser("Ayoub le bg", 1000)
 	print("\n")
 	tr1, err, usr1, usr2 := newTransaction(usr1, usr2, 50)
+	tr2, err, usr1, usr2 := newTransaction(usr1, usr2, 50)
 	print("\n")
 	print(err)
 	print("\n")
 	ledger = append(ledger, tr1)
-
+	ledger = append(ledger, tr2)
 	print("\n")
 	print(usr2.coinAmount)
 	print("\n")
 	print(len(ledger))
 	print("\n")
 	print(usr1.coinAmount)
+	print("\n")
+	//bloc1 =
 }
