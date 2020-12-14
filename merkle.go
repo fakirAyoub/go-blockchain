@@ -47,6 +47,8 @@ func newUser(_name string, _coinAmount uint64) *User {
 func newTransaction(_sender *User, _receiver *User, _amount uint64) (*Transaction, string, *User, *User) {
 	if _sender.coinAmount >= _amount {
 		transaction := Transaction{sender: *_sender, receiver: *_receiver, amount: _amount}
+		_sender.coinAmount -= _amount
+		_receiver.coinAmount += _amount
 		return &transaction, "", _sender, _receiver
 	} else {
 		print("Not enough funds.")
@@ -55,7 +57,9 @@ func newTransaction(_sender *User, _receiver *User, _amount uint64) (*Transactio
 }
 
 func merkleTree(transactions []Transaction) {
+	if len(transactions)%2 == 0 {
 
+	}
 }
 
 func main() {
