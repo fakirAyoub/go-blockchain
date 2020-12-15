@@ -44,28 +44,19 @@ type Transaction struct {
 	Pending  bool
 }
 
-// TransferEthRequest data structure
 type TransferEthRequest struct {
 	PrivKey string
 	To      string
 	Amount  int64
 }
 
-// HashResponse data structure
 type HashResponse struct {
 	Hash string
 }
 
-// BalanceResponse data structure
 type BalanceResponse struct {
 	Address string
 	Balance string
 	Symbol  string
 	Units   string
-}
-
-// Error data structure
-type Error struct {
-	Code    uint64
-	Message string
 }
