@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e20f7429-6b33-4dcd-a25a-a6c2d7eb096c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Block.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Coin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ledger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Transaction.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkelTree.go" beforeDir="false" afterPath="$PROJECT_DIR$/merkelTree.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignor" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignor" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
