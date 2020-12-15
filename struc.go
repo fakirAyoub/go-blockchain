@@ -32,7 +32,7 @@ func CreateBlock() Block {
 	return block
 }
 
-// Transaction data structure
+// Transaction
 type Transaction struct {
 	From     string
 	Hash     string
