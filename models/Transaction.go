@@ -20,3 +20,9 @@ func NewTransaction(TxId string, SourceAddress string, DestinationAddress string
 	tx.TransactionDate = TransactionDate
 	return tx
 }
+
+func (t *Transaction) calculateUTXO(senderAddress string) {
+	//Public Address A:
+	//N inputs and M outputs
+	//N - M should be greater than 0
+}

@@ -3,6 +3,7 @@ package models
 type DistributedLedger struct {
 	genesis Block
 	blocks []Block
+	reward int
 	totalSupply int
 }
 

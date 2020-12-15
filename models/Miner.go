@@ -1,11 +1,26 @@
 package models
 
 type Miner struct {
-	MinedBlocks      			[]Block
+	minedBlocks      			[]Block
+	reward						int
 }
 
-func NewMiner(MinedBlocks []Block) *Miner {
+func NewMiner(minedBlocks []Block) *Miner {
 	m := new(Miner)
-	m.MinedBlocks = MinedBlocks
+	m.minedBlocks = minedBlocks
 	return m
 }
+
+func (m *Miner) getReward(reward int) {
+	m.reward = m.reward + reward
+}
+
+func (m *Miner) validateTransaction(transaction Transaction) bool {
+	return true
+}
+
+func (m *Miner) createBlock(transactions []Transaction) bool {
+	return true
+}
+
+
