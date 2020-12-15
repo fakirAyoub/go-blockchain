@@ -11,9 +11,9 @@ import (
 type Hash [20]byte
 type Block string
 
-type Noeud struct {
-	gauche Hashable
-	droite Hashable
+type Node struct {
+	left Hashable
+	right Hashable
 }
 
 func (h Hash) String() string {
@@ -32,46 +32,46 @@ func (b Block) hash() Hash {
 	return hash([]byte(b)[:])
 }
 
-func (n Noeud) hash() Hash {
+func (n Node) hash() Hash {
 	var l, r [sha1.Size]byte
-	l = n.gauche.hash()
-	r = n.droite.hash()
+	l = n.left.hash()
+	r = n.right.hash()
 	return hash(append(l[:], r[:]...))
 }
 
-func ContructionMerkleTree(parts []Hashable) []Hashable { //[]Hashable{Block("a"), Block("b"), Block("c"), Block("d"), Block("e")}
+func buildMerkleTree(parts []Hashable) []Hashable { //[]Hashable{Block("a"), Block("b"), Block("c"), Block("d"), Block("e")}
 	var noeuds []Hashable
 	var i int
 	for i = 0; i < len(parts); i += 2 {
 		if i+1 < len(parts) {
-			noeuds = append(noeuds, Noeud{gauche: parts[i], droite: parts[i+1]}) // par pairs on les ajoute au tableau noeuds
+			noeuds = append(noeuds, Node {left: parts[i], right: parts[i+1]}) // par pairs on les ajoute au tableau noeuds
 		}
 	}
 	if len(noeuds) == 1 {
 		return noeuds
 	} else { // ou sinon on refait
-		return ContructionMerkleTree(noeuds)
+		return buildMerkleTree(noeuds)
 	}
 }
 
-func printTree(node Noeud) {
+func printTree(node Node) {
 	printNode(node, 0)
 }
 
-func printNode(node Noeud, level int) {
+func printNode(node Node, level int) {
 	fmt.Printf("(%d) %s %s\n", level, strings.Repeat(" ", level), node.hash())
-	if l, ok := node.gauche.(Noeud); ok {
+	if l, ok := node.left.(Node); ok {
 		printNode(l, level+1)
-	} else if l, ok := node.gauche.(Block); ok {
+	} else if l, ok := node.left.(Block); ok {
 		fmt.Printf("(%d) %s %s (data: %s)\n", level+1, strings.Repeat(" ", level+1), l.hash(), l)
 	}
-	if r, ok := node.droite.(Noeud); ok {
+	if r, ok := node.right.(Node); ok {
 		printNode(r, level+1)
-	} else if r, ok := node.droite.(Block); ok {
+	} else if r, ok := node.right.(Block); ok {
 		fmt.Printf("(%d) %s %s (data: %s)\n", level+1, strings.Repeat(" ", level+1), r.hash(), r)
 	}
 }
 
 func main() {
-	printTree(ContructionMerkleTree([]Hashable{Block("a"), Block("b"), Block("c"), Block("d"), Block("e")})[0].(Noeud))
+	printTree(buildMerkleTree([]Hashable{Block("a"), Block("b"), Block("c"), Block("d"), Block("e"), Block("f")})[0].(Node))
 }
